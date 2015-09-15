@@ -17,8 +17,8 @@ module Protokoll
                   :start         => 0 }
 
       options.merge!(_options)
-      raise ArgumentError.new('Protokoll pattern is nil, check your configuration.') if options[:pattern].nil?
-      raise ArgumentError.new('Protokoll pattern needs at least one counter symbol, check your configuration.') unless pattern_includes_symbols?(options)
+      raise ArgumentError.new("pattern can't be nil!") if options[:pattern].nil?
+      raise ArgumentError.new("pattern requires at least one counter symbol #{options[:number_symbol]}") unless pattern_includes_symbols?(options)
 
       # Defining custom method
       send :define_method, "reserve_#{options[:column]}!".to_sym do
